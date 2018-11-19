@@ -1,4 +1,5 @@
 #include "DualMC33926MotorShield.h"
+#include "actuators_motors.h"
 
 //m1dir, m1pwm, m1fb, m2dir, m2pwm, p2fb,d2, sf
 DualMC33926MotorShield md1(m_dir_pins[0], m_pwm_pins[0], m_fb_pins[0], 
