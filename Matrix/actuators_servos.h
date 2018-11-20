@@ -32,3 +32,7 @@ void testRCServos(uint8_t wait) {
     }
   }
 }
+
+void testLewanServos(uint8_t wait) {
+  delay(wait);
+}

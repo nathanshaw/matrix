@@ -1,14 +1,15 @@
-////////////////////////////////////////////
-// Neopixels
-////////////////////////////////////////////
+#include "Configuration.h"
+
 #include <Adafruit_NeoPixel.h>
-#ifdef __AVR__
-#include <avr/power.h>
-#endif
 
 const uint8_t neo_pins[] = {A16, A17, A18}; // 35, 36, 37 // A16, A17, A18
+
 #define NUM_NEOPIXELS 3
 Adafruit_NeoPixel strips[NUM_NEOPIXELS];
+
+#ifdef __AVR__
+#include <avr/power.h>
+#endif // __AVR__
 
 
 // Input a value 0 to 255 to get a color value.
@@ -119,3 +120,28 @@ void testNeoPixels(int wait) {
   }
   Serial.println("---------- NeoPixel Test Complete ----------");
 }
+
+/*
+ * old from before
+uint32_t Wheel(byte WheelPos);
+
+// Fill the dots one after the other with a color
+void colorWipe(uint8_t idx, uint32_t c, uint8_t wait);
+
+void rainbow(uint8_t idx, uint8_t wait);
+
+// Slightly different, this makes the rainbow equally distributed throughout
+void rainbowCycle(uint8_t idx, uint8_t wait);
+
+//Theatre-style crawling lights.
+void theaterChase(uint8_t idx, uint32_t c, uint8_t wait);
+
+//Theatre-style crawling lights with rainbow effect
+void theaterChaseRainbow(uint8_t idx, uint8_t wait);
+
+void setupNeoPixels();
+
+void testNeoPixels(int wait);
+*/
+
+// #endif // NEO_PIXELS
