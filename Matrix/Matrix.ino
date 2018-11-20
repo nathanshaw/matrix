@@ -21,7 +21,7 @@ void setup() {
     setupSolenoids();
   #endif
 
-  #ifdef NEO_PIXELS
+  #ifdef NEOPIXELS
     setupNeoPixels();
   #endif
   
@@ -30,6 +30,11 @@ void setup() {
   #endif
   
   delay(500);
+
+  #ifdef USB_MIDI
+    setupUSBMIDI();
+    Serial.println("Started USB MIDI");
+  #endif
 
   #ifdef HARDWARE_MIDI
     MIDI.begin(MIDI_CHANNEL_OMNI); // what MIDI channels to listen to (OMNI selects all)
@@ -44,7 +49,7 @@ void setup() {
   #endif
   
   Serial.println("Finished setup loop");
-  Serial.println("------------------------------");
+  Serial.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
 }
 ////////////////////////////////////////////
 ////////////////////////////////////////////
@@ -79,10 +84,6 @@ void loop() {
 
   #ifdef TEST_SOLENOIDS
     testSolenoids(100);
-    digitalWrite(2, HIGH); 
-    delay(100);
-    digitalWrite(2, LOW);
-    delay(200);
   #endif // TEST_SOLENOIDS 
 
   #ifdef TEST_ROBOT_SERVOS
@@ -93,6 +94,11 @@ void loop() {
   // Main loop functions
   ///////////////////////////////////////////////////
   #ifdef HARDWARE_MIDI
-    listenForMIDI();
+    listenForHardwareMIDI();
+  #endif
+
+  #ifdef USB_MIDI
+    usbMIDI.read();
+    // vprintln(usbMIDI.getType());
   #endif
 }
