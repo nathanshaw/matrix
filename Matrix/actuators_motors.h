@@ -33,7 +33,7 @@ DualMC33926MotorShield md1(m_dir_pins[0], m_pwm_pins[0], m_fb_pins[0],
                            m_dir_pins[1], m_pwm_pins[1], m_fb_pins[1], mc1d2_pin, mc1sf_pin);
 #endif // POLOLU_BOARD_1
 
-#ifdef POLOLU_BAORD_2
+#ifdef POLOLU_BOARD_2
 DualMC33926MotorShield md2(m_dir_pins[2], m_pwm_pins[2], m_fb_pins[2],
                            m_dir_pins[3], m_pwm_pins[3], m_fb_pins[3], mc2d2_pin, mc1sf_pin);
 #endif // POLOLU_BOARD_2

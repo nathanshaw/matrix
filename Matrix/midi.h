@@ -5,55 +5,9 @@
 #define MIDI_H
 
 #include <MIDI.h>
+
+#ifdef MIRROR_ACTUATORS
 #include "leds.h"
-
-#ifdef HARDWARE_MIDI 
-
-  MIDI_CREATE_INSTANCE(HardwareSerial, MIDI_BUS, MIDI);
-  
-  unsigned long t=0;
-  
-  void listenForHardwareMIDI() {
-    int note, velocity, channel, d1, d2;
-    if (MIDI.read()) {                    // Is there a MIDI message incoming ?
-      Serial.println("INIc MIDI MESSAGE DETECTED");
-      byte type = MIDI.getType();
-      switch (type) {
-        case midi::NoteOn:
-          note = MIDI.getData1();
-          velocity = MIDI.getData2();
-          channel = MIDI.getChannel();
-          if (velocity > 0) {
-            Serial.println(String("Note On:  ch=") + channel + ", note=" + note + ", velocity=" + velocity);
-          } else {
-            Serial.println(String("Note Off: ch=") + channel + ", note=" + note);
-          }
-          break;
-        case midi::NoteOff:
-          note = MIDI.getData1();
-          velocity = MIDI.getData2();
-          channel = MIDI.getChannel();
-          Serial.println(String("Note Off: ch=") + channel + ", note=" + note + ", velocity=" + velocity);
-          break;
-        default:
-          d1 = MIDI.getData1();
-          d2 = MIDI.getData2();
-          Serial.println(String("Message, type=") + type + ", data = " + d1 + " " + d2);
-      }
-      t = millis();
-    }
-    if (millis() - t > 10000) {
-      t += 10000;
-      Serial.println("(inactivity)");
-    }
-  }
-
-#endif // HARDWARE_MIDI
-
-#ifdef USB_MIDI
-/////////////////////////////////////////////////////
-// USB MIDI
-/////////////////////////////////////////////////////
 void matrixNoteOn(byte channel, byte note, byte velocity) {
   // for now the note on will turn on strip = channel to color = note at brightness = velocity
   vprint("NOTE ON : ");
@@ -92,6 +46,61 @@ void matrixNoteOff(byte channel, byte note, byte velocity)  {
     vprintln("Turned off md1 Motor 1");
   #endif // POLOLU_MOTORS
 }
+#endif // MIRROR_ACTUATORS
+
+#ifdef HARDWARE_MIDI 
+
+  MIDI_CREATE_INSTANCE(HardwareSerial, MIDI_BUS, HW_MIDI);
+  
+  unsigned long t=0;
+  
+  void listenForHardwareMIDI() {
+    // Serial.println("LISTENING FOR HARDWARE MIDI MESSAGES");
+    int note, velocity, channel, d1, d2;
+    if (HW_MIDI.read()) {                    // Is there a MIDI message incoming ?
+      byte type = HW_MIDI.getType();
+      switch (type) {
+        case midi::NoteOn:
+          note = HW_MIDI.getData1();
+          velocity = HW_MIDI.getData2();
+          channel = HW_MIDI.getChannel();
+          if (velocity > 0) {
+            vprintln(String("Note On:  ch=") + channel + ", note=" + note + ", velocity=" + velocity);
+          } else {
+            vprintln(String("Note Off: ch=") + channel + ", note=" + note);
+          }
+          #ifdef MIRROR_ACTUATORS
+            matrixNoteOn(channel, note, velocity);
+          #endif // MIRROR_ACTUATORS
+          break;
+        case midi::NoteOff:
+          note = HW_MIDI.getData1();
+          velocity = HW_MIDI.getData2();
+          channel = HW_MIDI.getChannel();
+          vprintln(String("Note Off: ch=") + channel + ", note=" + note + ", velocity=" + velocity);
+          #ifdef MIRROR_ACTUATORS
+            matrixNoteOff(channel, note, velocity);
+          #endif // MIRROR_ACTUATORS 
+          break;
+        default:
+          d1 = HW_MIDI.getData1();
+          d2 = HW_MIDI.getData2();
+          vprintln(String("Message, type=") + type + ", data = " + d1 + " " + d2);
+      }
+      t = millis();
+    }
+    if (millis() - t > 10000) {
+      t += 10000;
+      vprintln("(hardware MIDI inactivity)");
+    }
+  }
+
+#endif // HARDWARE_MIDI
+
+#ifdef USB_MIDI
+/////////////////////////////////////////////////////
+// USB MIDI
+/////////////////////////////////////////////////////
 
 void setupUSBMIDI() {
   // setup the handlers

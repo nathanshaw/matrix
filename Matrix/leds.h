@@ -109,7 +109,6 @@
   }
   
   void setupNeoPixels() {
-    Serial.println("----- Setting up NeoPixels -----");
     for (int i = 0; i < NUM_NEOPIXEL_STRIPS; i++) {
       strips[i] = Adafruit_NeoPixel(20, neo_pins[i], NEO_RGB + NEO_KHZ800);
       strips[i].begin();
@@ -117,7 +116,6 @@
       Serial.print("Setup strip #");
       Serial.println(i);
     }
-    Serial.println("---------- Done setting up NeoPixels -----------");
   }
   
   void testNeoPixels(int wait) {

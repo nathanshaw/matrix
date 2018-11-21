@@ -18,6 +18,7 @@
 #define NEOPIXELS
 #define NUM_NEOPIXEL_STRIPS 3
 // #define TEST_NEOPIXELS
+#define MIRROR_ACTUATORS // for strip #1
 
 ////////////////////////////////////////////
 // SOLENOIDS
@@ -51,7 +52,7 @@
 // #define B1M1_TYPE INFINATE
 #define POLOLU_BOARD_1
 // #define POLOLU_BOARD_2
-#define TEST_POLOLU_MOTORS
+// #define TEST_POLOLU_MOTORS
 
 ////////////////////////////////////////////
 // MIDI

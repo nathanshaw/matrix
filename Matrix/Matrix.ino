@@ -37,8 +37,6 @@ void setup() {
     setupServos();
     Serial.println("----- Finished Setting Up Servos -----");
   #endif
-  
-  delay(500);
 
   #ifdef USB_MIDI
     Serial.println("----- Started Setting Up USB MIDI -----");
@@ -48,7 +46,7 @@ void setup() {
 
   #ifdef HARDWARE_MIDI
     Serial.println("----- Started Setting Up Hardware MIDI -----");
-    MIDI.begin(MIDI_CHANNEL_OMNI); // what MIDI channels to listen to (OMNI selects all)
+    HW_MIDI.begin(MIDI_CHANNEL_OMNI); // what MIDI channels to listen to (OMNI selects all)
     Serial.println("----- Finished Setting Up Hardware MIDI -----");
   #endif
 
