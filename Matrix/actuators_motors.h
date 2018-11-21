@@ -1,14 +1,15 @@
+#ifndef ACTUATORS_MOTORS_H
+#define ACTUATORS_MOTORS_H
 ///////////////////////////////////////////
 // POLOLU MOTORS
 ////////////////////////////////////////////
-
 #include "DualMC33926MotorShield.h"
 #include <stdint.h>
+// #include "MatrixConfig.h"
 
 void stopIfFault();
 void testPololuMotors();
 
-#ifdef BEATER_BOARD
 // motor direction
 const uint8_t m_dir_pins[] = {13, 42, 15, 14};
 // motor pwm
@@ -24,71 +25,17 @@ const uint8_t mc1sf_pin = 26;
 const uint8_t mc2sf_pin = 55;
 
 const uint8_t num_motors = 4;
-#endif
-
 
 //m1dir, m1pwm, m1fb, m2dir, m2pwm, p2fb,d2, sf
+
+#ifdef POLOLU_BOARD_1
 DualMC33926MotorShield md1(m_dir_pins[0], m_pwm_pins[0], m_fb_pins[0],
                            m_dir_pins[1], m_pwm_pins[1], m_fb_pins[1], mc1d2_pin, mc1sf_pin);
+#endif // POLOLU_BOARD_1
+
+#ifdef POLOLU_BAORD_2
 DualMC33926MotorShield md2(m_dir_pins[2], m_pwm_pins[2], m_fb_pins[2],
                            m_dir_pins[3], m_pwm_pins[3], m_fb_pins[3], mc2d2_pin, mc1sf_pin);
+#endif // POLOLU_BOARD_2
 
-////////////////////////////////////////////
-// Brushed Motor Functions
-////////////////////////////////////////////
-void stopIfFault()
-{
-  if (md1.getFault())
-  {
-    Serial.println("MD1 fault");
-    while (1);
-  }
-  if (md2.getFault())
-  {
-    Serial.println("MD2 fault");
-    while (1);
-  }
-}
-
-////////////////////////////////////////////
-// Test Functions
-////////////////////////////////////////////
-void testPololuMotors() {
-  for (int i = 0; i <= 400; i++)
-  {
-    md2.setM1Speed(i);
-    stopIfFault();
-    if (abs(i) % 200 == 100)
-    {
-      Serial.print("MD2 m1 current: ");
-      Serial.println(md2.getM1CurrentMilliamps());
-    }
-    delay(2);
-  }
-  for (int i = 0; i <= 400; i++)
-  {
-    md2.setM2Speed(i);
-    stopIfFault();
-    if (abs(i) % 200 == 100)
-    {
-      Serial.print("MD2 m2 current: ");
-      Serial.println(md2.getM2CurrentMilliamps());
-    }
-    delay(2);
-  }
-  for (int i = 0; i <= 400; i++)
-  {
-    md1.setM1Speed(i);
-    stopIfFault();
-    if (abs(i) % 200 == 100)
-    {
-      Serial.print("MD1 m1 current: ");
-      Serial.println(md1.getM1CurrentMilliamps());
-    }
-    delay(2);
-  }
-
-}
-
-//extern DualMC33926MotorShield md1;
-//extern DualMC33926MotorShield md2;
+#endif // ACTUATORS_MOTORS_H

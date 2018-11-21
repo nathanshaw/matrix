@@ -1,3 +1,5 @@
+#ifndef ACTUATORS_SERVOS_H
+#define ACTUATORS_SERVOS_H
 ////////////////////////////////////////////
 // RC Servos
 ////////////////////////////////////////////
@@ -36,3 +38,4 @@
     delay(wait);
   }
 #endif // NUM_SERVOS
+#endif // ACTUATORS_SERVOS

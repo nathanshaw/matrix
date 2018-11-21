@@ -16,39 +16,56 @@ void setup() {
   Serial.begin(115200);
   Serial.println("----- Started Serial -----");
   
-  delay(1000);
+  delay(300);
   #ifdef SOLENOID_NUM
+    Serial.println("----- Started settting up Solenoids -----");
     setupSolenoids();
+    Serial.println("----- Finished Setting Up Solenoids -----");
   #endif
 
   #ifdef NEOPIXELS
+    Serial.println("----- Started settting up Neopixels -----");
     setupNeoPixels();
+    colorWipeBright(0, 20, 50, 0);
+    colorWipeBright(1, 20, 50, 0);
+    colorWipeBright(2, 20, 50, 0);
+    Serial.println("----- Finished Setting Up Neopixels -----"); 
   #endif
   
   #ifdef SERVOS
+    Serial.println("----- Started Setting Up Servos -----");
     setupServos();
+    Serial.println("----- Finished Setting Up Servos -----");
   #endif
   
   delay(500);
 
   #ifdef USB_MIDI
+    Serial.println("----- Started Setting Up USB MIDI -----");
     setupUSBMIDI();
-    Serial.println("Started USB MIDI");
+    Serial.println("----- Finished Setting Up USB MIDI -----");
   #endif
 
   #ifdef HARDWARE_MIDI
+    Serial.println("----- Started Setting Up Hardware MIDI -----");
     MIDI.begin(MIDI_CHANNEL_OMNI); // what MIDI channels to listen to (OMNI selects all)
-    Serial.println("Began MIDI channel listening to all channels");
+    Serial.println("----- Finished Setting Up Hardware MIDI -----");
   #endif
 
-  #ifdef POLOLU_MOTORS
-    Serial.println("initializing the Dual MC33926MotorShield #1 ");
+  #ifdef POLOLU_BOARD_1
+    Serial.println("----- Started Setting Up POLOLU Motor driver #1 -----");
     md1.init();
-    Serial.println("initializing the Dual MC33926MotorShield #2 ");
-    md2.init();
-  #endif
+    Serial.println("----- Finished Setting Up POLOLU Motor driver #1 -----");
+  #endif // POLOLU_BOARD_1
   
-  Serial.println("Finished setup loop");
+  #ifdef POLOLU_BOARD_2
+    Serial.println("----- Started Setting Up POLOLU Motor driver #2 -----");
+    md2.init();
+    Serial.println("----- Finished Setting Up POLOLU Motor driver #2 -----");  
+  #endif // POLOLU_BOARD_2
+  
+  Serial.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
+  Serial.println("------------- Finished setup loop -------------------");
   Serial.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
 }
 ////////////////////////////////////////////
@@ -62,11 +79,11 @@ void testRobotServos() {
 }
 
 void loop() {
-  #ifdef TEST_NEOPIXELS 
+  #if defined(TEST_NEOPIXELS) & defined(NEOPIXELS) 
     testNeoPixels(20);
   #endif
   
-  #ifdef TEST_SOLENOIDS
+  #if defined(TEST_SOLENOIDS) & defined(SOLENOIDS)
     testSolenoids(20);
   #endif
   
@@ -82,10 +99,6 @@ void loop() {
      testRCServos(4);
   #endif
 
-  #ifdef TEST_SOLENOIDS
-    testSolenoids(100);
-  #endif // TEST_SOLENOIDS 
-
   #ifdef TEST_ROBOT_SERVOS
     testRobotServos();
   #endif
@@ -99,6 +112,5 @@ void loop() {
 
   #ifdef USB_MIDI
     usbMIDI.read();
-    // vprintln(usbMIDI.getType());
   #endif
 }

@@ -17,22 +17,26 @@
 // #define ONBOARD_LED
 #define NEOPIXELS
 #define NUM_NEOPIXEL_STRIPS 3
+// #define TEST_NEOPIXELS
 
 ////////////////////////////////////////////
 // SOLENOIDS
 ////////////////////////////////////////////
 // #define NUM_SOLENOIDS 8
+// #define TEST_SOLENOIDS
 
 ////////////////////////////////////////////
 // RC Servos
 ////////////////////////////////////////////
 // #define NUM_RC_SERVOS 4
+// #define TEST_RC_SERVOS
 
 ////////////////////////////////////////////
 // Robot Servos
 ////////////////////////////////////////////
 // #define ROBOT_SERVOS
 // #define NUM_ROBOT_SERVO_BUSSES
+// #define TEST_LEWAN_SOUL_SERVOS
 
 ////////////////////////////////////////////
 // ODrive motors
@@ -43,21 +47,16 @@
 ////////////////////////////////////////////
 // Pololu Motors
 ////////////////////////////////////////////
-#define POLOLU_MOTORS
-// #define POLOLU_BOARD_A
-// #define POLOLU_BOARD_B
+// #define B1M1_TYPE ROTATION
+// #define B1M1_TYPE INFINATE
+#define POLOLU_BOARD_1
+// #define POLOLU_BOARD_2
+#define TEST_POLOLU_MOTORS
 
 ////////////////////////////////////////////
 // MIDI
 ////////////////////////////////////////////
 // beaterboard uses RX/TX 6 for the MIDI communication
-#define USB_MIDI
-// #define HARDWARE_MIDI
-
-////////////////////////////////////////////
-// Boot options
-////////////////////////////////////////////
-// #define TEST_RC_SERVOS
-// #define TEST_LEWAN_SOUL_SERVOS
-// #define TEST_SOLENOIDS
-// #define TEST_NEOPIXELS
+// #define USB_MIDI
+#define HARDWARE_MIDI // the harda
+#define MIDI_BUS Serial6

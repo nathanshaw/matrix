@@ -11,4 +11,11 @@
 #define ENABLED(b) _CAT(SWITCH_ENABLED_, b)
 #define DISABLED(b) (!_CAT(SWITCH_ENABLED_, b))
 
+////////////////////////////////////////////
+// Pololu Motors
+////////////////////////////////////////////
+#define ROTATION 1 // has a "max position" and a "min position"
+#define INFINATE 2 // can rotate in either direction without any issues
+
+
 #endif // MACROS_H
