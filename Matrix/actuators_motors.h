@@ -15,7 +15,7 @@ const uint8_t m_dir_pins[] = {13, 42, 15, 14};
 // motor pwm
 const uint8_t m_pwm_pins[] = {29, 30, 10, 38};
 //feedback
-const uint8_t m_fb_pins[] = {A22, A21, A2, A3};// a22, a21, a2(16), a3,
+const uint8_t m_fb_pins[] = {A22, A21, A2, A3};// a22, a21, a2, a3,
 // limit switches
 const uint8_t m_ls_pins[] = {39, 51, A11, 57}; // 39, 51, A11, 57
 

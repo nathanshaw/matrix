@@ -14,6 +14,6 @@
   #include "actuators_motors.h"
   #include "actuators_solenoids.h"
   #include "actuators_servos.h"
-  #include "midi.h"
   #include "leds.h"
+  #include "midi.h"
 #endif // MATRIX_CONFIG_H

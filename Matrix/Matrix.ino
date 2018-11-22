@@ -25,10 +25,10 @@ void setup() {
 
   #ifdef NEOPIXELS
     Serial.println("----- Started settting up Neopixels -----");
-    setupNeoPixels();
-    colorWipeBright(0, 20, 50, 0);
-    colorWipeBright(1, 20, 50, 0);
-    colorWipeBright(2, 20, 50, 0);
+    // setupNeoPixels();
+    // colorWipeBright(0, 20, 50, 0);
+    // colorWipeBright(1, 20, 50, 0);
+    // colorWipeBright(2, 20, 50, 0);
     Serial.println("----- Finished Setting Up Neopixels -----"); 
   #endif
   
