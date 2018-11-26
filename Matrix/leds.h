@@ -1,19 +1,23 @@
 #ifndef LEDS_H
   #define LEDS_H
-  
-  #ifdef NEOPIXELS
+
+  #include "Configuration.h"
+
+  #ifdef NEOPIXEL_STRIPS
       #include <Adafruit_NeoPixel.h>
-      
+      #include "pins.h"
       #ifdef __AVR__
       #include <avr/power.h>
       #endif // __AVR__
 
-      Adafruit_NeoPixel strips[NUM_NEOPIXEL_STRIPS];
-     
+      extern const int neo_pins[];
+      
+      /*
       uint32_t Wheel(Adafruit_NeoPixel, byte){
         //uint32_t color = 0;
         //return color;
       };
+      */
 
       void colorWipe(Adafruit_NeoPixel, uint32_t, uint8_t);
       
@@ -36,6 +40,5 @@
           getSBrightness(uint16_t);
           getStrip(Adafruit_NeoPixel);
       */
-  #endif // NEOPIXELS
-
+  #endif // NEOPIXEL_STRIPS
 #endif // LEDS_H

@@ -16,9 +16,11 @@
 ////////////////////////////////////////////
 #include <Arduino.h>
 // #define ONBOARD_LED
-// #define NEOPIXELS
-// #define NUM_NEOPIXEL_STRIPS 3
-// #define TEST_NEOPIXELS
+#define NEOPIXEL_STRIPS 3
+#define SYSTEM_LED_FEEDBACK 2
+#define SYSTEM_LED_NUM 20
+#define ODRIVE_LED_FEEDBACK 1
+#define MIDI_LED_FEEDBACK 0
 // #define MIRROR_ACTUATORS // for strip #1
 
 // LED Feedback
@@ -26,6 +28,7 @@
 ////////////////////////////////////////////
 // SOLENOIDS
 ////////////////////////////////////////////
+// #define SOLENOIDS
 // #define NUM_SOLENOIDS 4
 // #define TEST_SOLENOIDS
 
@@ -42,24 +45,31 @@
 // #define NUM_ROBOT_SERVO_BUSSES
 // #define TEST_LEWAN_SOUL_SERVOS
 
+///////////////////////////////////////////////////////////////////////////////
+//////////////////// MOTORS ////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+#define DC_MOTORS
 ////////////////////////////////////////////
 // ODrive motors
 ////////////////////////////////////////////
-#define ODRIVE_MOTORS
-#define TEST_ODRIVE_LOOP
-#define ODRIVE_SERIAL Serial5
+// #define ODRIVE_MOTORS
+// #define TEST_ODRIVE_LOOP
+// #define ODRIVE_SERIAL Serial5
 // #define TEST_ODRIVE_INTERACTIVE
 // #define NUM_ODRIVE_MOTORS
+// #define SYSTEM_FEEDBACK 2//strip #2 will now be used for system feedback
 
 ////////////////////////////////////////////
 // Pololu Motors
 ////////////////////////////////////////////
+#define POLOLU_MC33926
+#define POLOLU_MOTORS
 // #define B1M1_TYPE ROTATION
 // #define B1M1_TYPE INFINATE
-// #define POLOLU_BOARD_1
+#define POLOLU_BOARD_1
 // #define POLOLU_BOARD_2
-// #define TEST_POLOLU_MOTORS
-
+#define TEST_POLOLU_MOTORS
 
 ////////////////////////////////////////////
 // MIDI
