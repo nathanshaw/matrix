@@ -37,4 +37,24 @@ DualMC33926MotorShield md2(m_dir_pins[2], m_pwm_pins[2], m_fb_pins[2],
                            m_dir_pins[3], m_pwm_pins[3], m_fb_pins[3], mc2d2_pin, mc1sf_pin);
 #endif // POLOLU_BOARD_2
 
+#ifdef ODRIVE_MOTORS
+// Printing with stream operator
+template<class T> inline Print& operator <<(Print &obj,     T arg) {
+  obj.print(arg);
+  return obj;
+}
+template<>        inline Print& operator <<(Print &obj, float arg) {
+  obj.print(arg, 4);
+  return obj;
+}
+#include <ODriveArduino.h>
+// ODrive object
+ODriveArduino odrive(ODRIVE_SERIAL);
+void setupODrive();
+void runODriveSinTest();
+void runODriveCalibration(int);
+void odriveInteractiveTestLoop();
+void odriveTest();
+#endif // ODRIVE_MOTORS
+
 #endif // ACTUATORS_MOTORS_H

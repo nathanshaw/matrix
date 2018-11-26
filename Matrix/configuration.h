@@ -16,10 +16,12 @@
 ////////////////////////////////////////////
 #include <Arduino.h>
 // #define ONBOARD_LED
-#define NEOPIXELS
-#define NUM_NEOPIXEL_STRIPS 3
-#define TEST_NEOPIXELS
-#define MIRROR_ACTUATORS // for strip #1
+// #define NEOPIXELS
+// #define NUM_NEOPIXEL_STRIPS 3
+// #define TEST_NEOPIXELS
+// #define MIRROR_ACTUATORS // for strip #1
+
+// LED Feedback
 
 ////////////////////////////////////////////
 // SOLENOIDS
@@ -43,7 +45,10 @@
 ////////////////////////////////////////////
 // ODrive motors
 ////////////////////////////////////////////
-// #define ODRIVE_MOTORS
+#define ODRIVE_MOTORS
+#define TEST_ODRIVE_LOOP
+#define ODRIVE_SERIAL Serial5
+// #define TEST_ODRIVE_INTERACTIVE
 // #define NUM_ODRIVE_MOTORS
 
 ////////////////////////////////////////////
@@ -51,7 +56,7 @@
 ////////////////////////////////////////////
 // #define B1M1_TYPE ROTATION
 // #define B1M1_TYPE INFINATE
-#define POLOLU_BOARD_1
+// #define POLOLU_BOARD_1
 // #define POLOLU_BOARD_2
 // #define TEST_POLOLU_MOTORS
 

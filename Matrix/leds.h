@@ -19,18 +19,23 @@
       
       void colorWipeBright(Adafruit_NeoPixel, uint8_t, uint8_t, uint8_t);
       
-      void rainbow(Adafruit_NeoPixel, uint8_t);
-      
-      void rainbowCycle(Adafruit_NeoPixel, uint8_t);
-      
-      void theaterChase(Adafruit_NeoPixel, uint32_t, uint8_t);
-      
-      void theaterChaseRainbow(Adafruit_NeoPixel, uint8_t);
-      
       void setupNeoPixels();
       
       void testNeoPixels(int);
 
+      /*
+      class LedStrip:
+        private:
+          LedStrip(uint16_t, uint8_t);// number of pixels,
+          uint32_t colors[];
+          String pixel_func[];// what is the functionality of the pixel
+          Adafruit_NeoPixel strip;
+        public:
+          getPColor(uint16_t);// which pixel
+          getPBrightness(uint16_t);// which pixel
+          getSBrightness(uint16_t);
+          getStrip(Adafruit_NeoPixel);
+      */
   #endif // NEOPIXELS
 
 #endif // LEDS_H

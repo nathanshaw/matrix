@@ -4,7 +4,7 @@
   #include <Arduino.h>
   #include <stdint.h>
   #include "macros.h"
-  #include "configuration.h"
+  #include "Configuration.h"
   #include "printing.h"
   #include "actuators_motors.h"
   #include "actuators_solenoids.h"

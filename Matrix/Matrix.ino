@@ -66,7 +66,20 @@ void setup() {
     md2.init();
     Serial.println("----- Finished Setting Up POLOLU Motor driver #2 -----");  
   #endif // POLOLU_BOARD_2
+
+  #ifdef ODRIVE_MOTORS
+    setupODrive();
+    runODriveCalibration(0);
+    runODriveCalibration(1);
+  #endif // ODRIVE_MOTORS
   
+  #ifdef TEST_ODRIVE_INTERACTIVE
+  Serial.println("Ready!");
+  Serial.println("Send the character '0' or '1' to calibrate respective motor (you must do this before you can command movement)");
+  Serial.println("Send the character 's' to exectue test move");
+  Serial.println("Send the character 'b' to read bus voltage");
+  Serial.println("Send the character 'p' to read motor positions in a 10s loop");
+  #endif // TEST_ODRIVE_INTERACTIVE
   Serial.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
   Serial.println("------------- Finished setup loop -------------------");
   Serial.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
@@ -78,7 +91,6 @@ void setup() {
 ////////////////////////////////////////////
 
 void loop() {
-  /*
   #if defined(TEST_NEOPIXELS) & defined(NEOPIXELS) 
     testNeoPixels(20);
   #endif
@@ -107,12 +119,15 @@ void loop() {
   // Main loop functions
   ///////////////////////////////////////////////////
   #ifdef HARDWARE_MIDI
-    //listenForHardwareMIDI();
+    listenForHardwareMIDI();
   #endif
 
   #ifdef USB_MIDI
     //usbMIDI.read();
   #endif
-  */
+
+  #ifdef TEST_ODRIVE_LOOP
+    odriveTest();
+  #endif // TEST_ODRIVE_LOOP
 }
 #endif // MAIN_H
