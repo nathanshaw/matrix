@@ -1,29 +1,36 @@
 #include "actuators_solenoids.h"
-#include "Configuration.h"
 
 #ifdef NUM_SOLENOIDS
-#include <Arduino.h>
+void testSolenoids(int wait) {
+  for (int i = 0; i < NUM_SOLENOIDS; i++) {
+    digitalWrite(sol_pins[i], HIGH);
+    vprint("Testing Solenoid #");
+    vprint(i);
+    vprint(" pin - ");
+    vprintln(sol_pins[i]);
+    delay(wait);
+    digitalWrite(sol_pins[i], LOW);
+    delay(wait * 5);
+  }
+}
 
-  void setupSolenoids() {
-      for (int i = 0; i < NUM_SOLENOIDS; i++) {
-          pinMode(sol_pins[i], OUTPUT);
-          digitalWrite(sol_pins[i], LOW);
-          Serial.print("Initialized Solenoid #");
-          Serial.println(i);
-      }
-      Serial.println("---------------------------");
-  }
-  
-  void testSolenoids(int wait) {
-      for (int i = 0; i < NUM_SOLENOIDS; i++) {
-          digitalWrite(sol_pins[i], HIGH);
-          Serial.print("Testing Solenoid #");
-          vprint(i);
-          vprint(" pin - ");
-          vprintln(sol_pins[i]);
-          delay(wait);
-          digitalWrite(sol_pins[i], LOW);
-          delay(wait*5);
-      }
-  }
-#endif // NUM_SOLENOIDs
+Solenoid::Solenoid(int pin, String note)
+{
+  _pin = pin;
+  _note = note;
+  pinMode(_pin, OUTPUT);
+  digitalWrite(_pin, LOW);
+  _state = LOW;
+  vprint("Initialized Solenoid on pin");
+  vprintln(_pin);
+}
+
+void Solenoid::strike(int on_time) {
+  digitalWrite(_pin, HIGH);
+  _state = HIGH;
+  delay(on_time);
+  digitalWrite(_pin, LOW);
+  _state = LOW;
+}
+
+#endif // NUM_SOLENOIDS

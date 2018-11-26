@@ -14,6 +14,7 @@
   void setupServos();
   void testRCServos(uint8_t);  
   void testLewanServos(uint8_t);
+  void testRobotServos();
 #endif // NUM_SERVOS
 
 #endif // ACTUATORS_SERVOS

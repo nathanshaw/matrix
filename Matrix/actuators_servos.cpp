@@ -2,6 +2,7 @@
 #include "Configuration.h"
 
 #ifdef NUM_SERVOS
+
 void setupServos() {
   for (int i = 0; i < NUM_SERVOS; i++) {
     servos[i].attach(ser_pins[i]);
@@ -28,4 +29,9 @@ void testRCServos(uint8_t wait) {
 void testLewanServos(uint8_t wait) {
   delay(wait);
 }
+
+void testRobotServos() {
+  Serial.println("TODO TEST ROBOT SERVOS");
+}
+
 #endif // NUM_SERVOS

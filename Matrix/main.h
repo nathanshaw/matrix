@@ -1,12 +1,3 @@
-/*
- * This firmware was developed by Nathan Villicana-Shaw
- * at the Victoria University of Wellington.
- * 
- * https://github.com/nathanshaw/matrix
- */
-
-#include "MatrixConfig.h"
-
 
 #ifndef MAIN_H
 #define MAIN_H
@@ -45,7 +36,7 @@ void setup() {
 
   #ifdef USB_MIDI
     Serial.println("----- Started Setting Up USB MIDI -----");
-    MIDIBus midi_bus = MIDIBus("usb");
+    setupUSBMIDI();
     Serial.println("----- Finished Setting Up USB MIDI -----");
   #endif
 

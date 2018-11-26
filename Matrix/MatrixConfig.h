@@ -1,8 +1,3 @@
-/**
- *
- *
- *
- */
 #ifndef MATRIX_CONFIG_H
   #define MATRIX_CONFIG_H
  
@@ -16,4 +11,5 @@
   #include "actuators_servos.h"
   #include "leds.h"
   #include "midi.h"
+  // #include "main.h"
 #endif // MATRIX_CONFIG_H

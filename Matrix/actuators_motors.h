@@ -5,7 +5,6 @@
 ////////////////////////////////////////////
 #include "DualMC33926MotorShield.h"
 #include <stdint.h>
-// #include "MatrixConfig.h"
 
 void stopIfFault();
 void testPololuMotors();
