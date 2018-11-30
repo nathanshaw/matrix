@@ -1,3 +1,5 @@
+// Header ==> Base/Parent Class for all Actuators (Outputs)
+
 #ifndef ACTUATOR_H
 #define ACTUATOR_H
 
@@ -5,20 +7,19 @@
 
 class Actuator {
   public:
-    virtual void setup();
-    virtual void test();
-  private:
-    String _type;
-    String _parent;
-    String _id;
+    // constructor
+    Actuator();
+    // destructor
+    ~ Actuator();
+
+    virtual void init() = 0;
+    virtual void test() = 0;
+
+    // accessor functions
+    int getState() { return _state; };
+
+  protected:
+    int _state;
 };
-
-#ifdef DC_MOTORS
-  #include "motor.h"
-#endif // DC_MOTORS
-
-#ifdef SOLENOIDS
-  #include "solenoids.h"
-#endif // SOLENOIDS
 
 #endif // ACTUATOR_H

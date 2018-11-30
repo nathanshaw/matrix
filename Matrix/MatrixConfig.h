@@ -8,8 +8,10 @@
   #include "printing.h"
   #include "actuator.h"
   #include "sensor.h"
-  #include "leds.h"
+  #ifdef NEOPIXEL_STRIPS
+    #include "neostrip.h"
+  #endif
+  #include "pololu_mc33926.h"
   #include "midi.h"
-  // #include "main.h"
   
 #endif // MATRIX_CONFIG_H

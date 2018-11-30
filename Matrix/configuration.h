@@ -19,8 +19,8 @@
 #define NEOPIXEL_STRIPS 3
 #define SYSTEM_LED_FEEDBACK 2
 #define SYSTEM_LED_NUM 20
-#define ODRIVE_LED_FEEDBACK 1
-#define MIDI_LED_FEEDBACK 0
+// #define ODRIVE_LED_FEEDBACK 1
+// #define MIDI_LED_FEEDBACK 0
 // #define MIRROR_ACTUATORS // for strip #1
 
 // LED Feedback
@@ -75,6 +75,6 @@
 // MIDI
 ////////////////////////////////////////////
 // beaterboard uses RX/TX 6 for the MIDI communication
-#define USB_MIDI
+// #define USB_MIDI
 // #define HARDWARE_MIDI 
 // #define MIDI_BUS Serial6 // for the beaeterbot shield

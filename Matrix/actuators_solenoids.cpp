@@ -18,9 +18,13 @@ Solenoid::Solenoid(int pin, String note)
 {
   _pin = pin;
   _note = note;
+
+  // setup the pin as an output
   pinMode(_pin, OUTPUT);
   digitalWrite(_pin, LOW);
   _state = LOW;
+
+  // printing some feedback to the user
   vprint("Initialized Solenoid on pin");
   vprintln(_pin);
 }

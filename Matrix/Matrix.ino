@@ -11,7 +11,7 @@
 #define MAIN_H
 
 #ifdef SYSTEM_LED_FEEDBACK
-Adafruit_NeoPixel sys_led_strip = Adafruit_NeoPixel(SYSTEM_LED_NUM, neo_pins[SYSTEM_LED_FEEDBACK], NEO_RGB + NEO_KHZ800);
+  NeoStrip sys_strip = NeoStrip(neo_pins[2], SYSTEM_LED_NUM, 0xFF00);
 #endif
 
 ////////////////////////////////////////////
@@ -27,8 +27,8 @@ void setup() {
 #ifdef NEOPIXEL_STRIPS
   Serial.println("----- Started setting up Neopixels -----");
 #ifdef SYSTEM_LED_FEEDBACK
-  sys_led_strip.begin();
-  // colorWipeBright(sys_led_strip, 0xFF0055, 20, 50);
+  sys_strip.init();
+  sys_strip.allOn(0xFF0055, 20);
   Serial.println("Created a system led feedback strip");
 #endif
   Serial.println("----- Finished Setting Up Neopixels -----");
@@ -47,7 +47,7 @@ void setup() {
 #endif
 
 #ifdef SYSTEM_LED_FEEDBACK
-  //  colorWipeBright(sys_led_strip, 0xFFFF55, 50, 50);
+  sys_strip.allOn(0xFFFF55, 50);
 #endif
 
 #ifdef USB_MIDI
@@ -87,20 +87,17 @@ void setup() {
   Serial.println("Send the character 'b' to read bus voltage");
   Serial.println("Send the character 'p' to read motor positions in a 10s loop");
 #endif // TEST_ODRIVE_INTERACTIVE
+#ifdef SYSTEM_LED_FEEDBACK
+  delay(100);
+  sys_strip.allOn(0x44, 50);
+#endif
   Serial.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
   Serial.println("------------- Finished setup loop -------------------");
   Serial.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
-#ifdef SYSTEM_LED_FEEDBACK
-  colorWipeBright(sys_led_strip, 0x00FF55, 50, 50);
-#endif
 }
-////////////////////////////////////////////
-////////////////////////////////////////////
-// Main Loop
-////////////////////////////////////////////
-////////////////////////////////////////////
 
 void loop() {
+  Serial.println("loop");
 #if defined(TEST_NEOPIXELS) & defined(NEOPIXEL_STRIPS)
   testNeoPixels(20);
 #endif
@@ -114,6 +111,7 @@ void loop() {
 #endif
 
 #ifdef TEST_POLOLU_MOTORS
+  Serial.println("testing pololu motors");
   testPololuMotors();
 #endif
 
@@ -138,7 +136,7 @@ void loop() {
 
 #ifdef TEST_ODRIVE_LOOP
 #ifdef SYSTEM_FEEDBACK
-  //colorWipeBright(SYSTEM_FEEDBACK, 40, 50, 0);
+  colorWipeBright(SYSTEM_FEEDBACK, 40, 50, 0);
 #endif
   odriveTest();
 #endif // TEST_ODRIVE_LOOP

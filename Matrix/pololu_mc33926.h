@@ -2,6 +2,7 @@
 #define POLOLU_MC33926_H
 
 #include "DualMC33926MotorShield.h"
+#include "motor.h"
 
 void stopIfFault();
 void testPololuMotors();

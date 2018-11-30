@@ -4,7 +4,7 @@
 class Sensor {
   public:
     virtual void poll();
-    virtual void setup();
+    virtual void init();
   private:
     // identity
     int _id;

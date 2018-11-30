@@ -4,12 +4,12 @@
 #include "actuator.h"
 #include <Arduino.h>
 
-class Motor : public Actuator {
+class Motor : virtual public Actuator {
    private:
     double _vel;
     bool _closedLoop;
     String _type;
-   public:
+   protected:
     // setup and test are inherited from the parent class
     int8_t getDir();
     double getVel();

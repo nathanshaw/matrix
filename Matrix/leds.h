@@ -1,44 +1,24 @@
 #ifndef LEDS_H
   #define LEDS_H
 
-  #include "Configuration.h"
+ #include "actuator.h"
 
-  #ifdef NEOPIXEL_STRIPS
-      #include <Adafruit_NeoPixel.h>
-      #include "pins.h"
-      #ifdef __AVR__
-      #include <avr/power.h>
-      #endif // __AVR__
+ class LEDs : public Actuator {
+  
+    public:
+      LEDs(uint16_t, uint16_t);// num_pixels, brightness
 
-      extern const int neo_pins[];
+      virtual void init() = 0;
+      virtual void test() = 0;
       
-      /*
-      uint32_t Wheel(Adafruit_NeoPixel, byte){
-        //uint32_t color = 0;
-        //return color;
-      };
-      */
+      virtual void setBrightness(uint16_t) = 0;     
+      uint16_t getBrightness() { return _brightness; };
+     
+      uint16_t getNumPixels() { return _num_pixels; };
+      
+    protected:
+      uint16_t _brightness;
+      uint16_t _num_pixels;
+};
 
-      void colorWipe(Adafruit_NeoPixel, uint32_t, uint8_t);
-      
-      void colorWipeBright(Adafruit_NeoPixel, uint8_t, uint8_t, uint8_t);
-      
-      void setupNeoPixels();
-      
-      void testNeoPixels(int);
-
-      /*
-      class LedStrip:
-        private:
-          LedStrip(uint16_t, uint8_t);// number of pixels,
-          uint32_t colors[];
-          String pixel_func[];// what is the functionality of the pixel
-          Adafruit_NeoPixel strip;
-        public:
-          getPColor(uint16_t);// which pixel
-          getPBrightness(uint16_t);// which pixel
-          getSBrightness(uint16_t);
-          getStrip(Adafruit_NeoPixel);
-      */
-  #endif // NEOPIXEL_STRIPS
 #endif // LEDS_H
