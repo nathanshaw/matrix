@@ -1,0 +1,6 @@
+[submodule "Adafruit_NeoPixel"]
+	path = Adafruit_NeoPixel
+	url = https://github.com/adafruit/Adafruit_NeoPixel.git
+[submodule "arduino_midi_library"]
+	path = arduino_midi_library
+	url = https://github.com/FortySevenEffects/arduino_midi_library.git
