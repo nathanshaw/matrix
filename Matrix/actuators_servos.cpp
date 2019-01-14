@@ -1,16 +1,23 @@
 #include "actuators_servos.h"
-#include "Configuration.h"
+#include "configuration.h"
+#include <Servo.h>
 
-#ifdef NUM_SERVOS
+extern Servo servos[];
+extern const uint8_t ser_pins[];
+extern int16_t ser_pos[];
 
-void setupServos() {
-  for (int i = 0; i < NUM_SERVOS; i++) {
+
+void setupRCServos() {
+  // TODO THIS IS A BIG NO NO - CHANGE!!!
+  const uint8_t ser_pins[] = {A6, A7, A8, A9}; // A6,A7,A8,A9 // 20, 21, 22, 23
+  for (int i = 0; i < NUM_RC_SERVOS; i++) {
     servos[i].attach(ser_pins[i]);
+    Serial.println("attached servo");
   }
 }
 
 void testRCServos(uint8_t wait) {
-  for (int i = 0; i < NUM_SERVOS; i++) {
+  for (int i = 0; i < NUM_RC_SERVOS; i++) {
     Serial.print("Testing RC Servo #");
     Serial.println(i);
     for (int pos = ser_pos[i]; pos < 180; pos++) {
@@ -23,7 +30,10 @@ void testRCServos(uint8_t wait) {
       servos[i].write(ser_pos[i]);
       delay(wait);
     }
+  ser_pos[i] = 90;
+  servos[i].write(ser_pos[i]);
   }
+
 }
 
 void testLewanServos(uint8_t wait) {
@@ -33,5 +43,3 @@ void testLewanServos(uint8_t wait) {
 void testRobotServos() {
   Serial.println("TODO TEST ROBOT SERVOS");
 }
-
-#endif // NUM_SERVOS

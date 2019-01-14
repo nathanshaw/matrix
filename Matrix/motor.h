@@ -2,7 +2,6 @@
 #define MOTOR_H
 
 #include "actuator.h"
-#include <Arduino.h>
 
 class Motor : virtual public Actuator {
    private:

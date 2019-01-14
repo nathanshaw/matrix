@@ -17,26 +17,38 @@
 #include <Arduino.h>
 // #define ONBOARD_LED
 #define NEOPIXEL_STRIPS 3
-#define SYSTEM_LED_FEEDBACK 2
+#define SYSTEM_LED_FEEDBACK 1
 #define SYSTEM_LED_NUM 20
 // #define ODRIVE_LED_FEEDBACK 1
-// #define MIDI_LED_FEEDBACK 0
-// #define MIRROR_ACTUATORS // for strip #1
+#define MIDI_LED_FEEDBACK 2
+#define MIRROR_ACTUATORS // for strip #1
 
 // LED Feedback
 
 ////////////////////////////////////////////
 // SOLENOIDS
 ////////////////////////////////////////////
-// #define SOLENOIDS
-// #define NUM_SOLENOIDS 4
+#define SOLENOIDS
+#define NUM_SOLENOIDS 16
+// #define ONBOARD_SOLENOIDS
 // #define TEST_SOLENOIDS
 
 ////////////////////////////////////////////
 // RC Servos
 ////////////////////////////////////////////
-// #define NUM_RC_SERVOS 4
+#define NUM_RC_SERVOS 2
+
 // #define TEST_RC_SERVOS
+
+// Min and max values for the Servos
+#define RCS1_MIN 60 // min value for 1st RC servo
+#define RCS2_MIN 60
+#define RCS3_MIN 60
+#define RCS4_MIN 60
+#define RCS1_MAX 120// max value for 1st RC servo
+#define RCS2_MAX 120
+#define RCS3_MAX 120
+#define RCS4_MAX 120
 
 ////////////////////////////////////////////
 // Robot Servos
@@ -68,13 +80,14 @@
 // #define B1M1_TYPE ROTATION
 // #define B1M1_TYPE INFINATE
 #define POLOLU_BOARD_1
-// #define POLOLU_BOARD_2
-#define TEST_POLOLU_MOTORS
+#define POLOLU_BOARD_2
+// #define TEST_POLOLU_MOTORS
 
 ////////////////////////////////////////////
 // MIDI
 ////////////////////////////////////////////
 // beaterboard uses RX/TX 6 for the MIDI communication
 // #define USB_MIDI
-// #define HARDWARE_MIDI 
-// #define MIDI_BUS Serial6 // for the beaeterbot shield
+#define HARDWARE_MIDI
+// for the beaeterbot shield hardware serial
+#define MIDI_BUS Serial6

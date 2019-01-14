@@ -3,15 +3,14 @@
 ////////////////////////////////////////////
 // RC Servos
 ////////////////////////////////////////////
-#ifdef NUM_SERVOS
+#ifdef NUM_RC_SERVOS
   #include <Servo.h>
-
   const uint8_t ser_pins[] = {A6, A7, A8, A9}; // A6,A7,A8,A9 // 20, 21, 22, 23
   int16_t ser_pos[] = {180, 180, 180, 180};
   
-  Servo servos[NUM_SERVOS];
+  Servo servos[NUM_RC_SERVOS];
   
-  void setupServos();
+  void setupRCServos();
   void testRCServos(uint8_t);  
   void testLewanServos(uint8_t);
   void testRobotServos();

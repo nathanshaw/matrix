@@ -3,6 +3,7 @@
 
 #include "DualMC33926MotorShield.h"
 #include "motor.h"
+#include <Arduino.h>
 
 void stopIfFault();
 void testPololuMotors();
